@@ -69,8 +69,8 @@ a{color:inherit}
 .tile.gold{box-shadow:inset 0 0 0 2px rgba(227,182,73,.9)}
 /* A shard lights up under the pointer (or on its own now and then) and dims back slowly. */
 .tile::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity 2.6s ease;background:radial-gradient(closest-side,rgba(255,212,112,.42),rgba(255,212,112,0))}
-.tile.lit{opacity:1!important;box-shadow:inset 0 0 0 1px rgba(240,200,100,.75);transition-duration:.8s}
-.tile.lit::after{opacity:1;transition-duration:.8s}
+.tile.lit{opacity:1!important;box-shadow:inset 0 0 0 1px rgba(240,200,100,.75);transition-duration:1.2s}
+.tile.lit::after{opacity:1;transition-duration:1.2s}
 .backdrop::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,8,9,.26) 0%,rgba(8,8,9,.36) 60%,rgba(8,8,9,.58) 100%)}
 .nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px}
 .mark{display:inline-flex;align-items:center;gap:10px;font:700 19px/1 Unbounded,"Arial Black",sans-serif;letter-spacing:-.01em;text-decoration:none;padding-block:5px}
@@ -271,11 +271,14 @@ background:radial-gradient(circle closest-side,transparent 0 35%,#0b0b0c 35.6% 4
         const shimmer = setInterval(() => {
           const all = grid.children;
           if (document.hidden || !all.length) return;
-          const t = all[Math.floor(Math.random() * all.length)];
-          if (t === lit) return;
-          t.classList.add("lit");
-          setTimeout(() => { if (t !== lit) t.classList.remove("lit"); }, 2400);
-        }, 1100);
+          const count = Math.random() < .5 ? 2 : 1;          // one or two new shards every half second
+          for (let k = 0; k < count; k++) {
+            const t = all[Math.floor(Math.random() * all.length)];
+            if (t === lit || t.classList.contains("lit")) continue;
+            t.classList.add("lit");
+            setTimeout(() => { if (t !== lit) t.classList.remove("lit"); }, 1800 + Math.random() * 1800);
+          }
+        }, 500);
       }
     };
     im.src = bgFile;
