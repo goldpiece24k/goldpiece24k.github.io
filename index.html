@@ -103,10 +103,10 @@ background:radial-gradient(circle closest-side,transparent 0 35%,#0b0b0c 35.6% 4
 .l3{margin-top:4cqi;font:700 7cqi Manrope,sans-serif}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);container-type:inline-size}
 .unit{padding:16px 4px 14px;text-align:center;border-left:1px solid var(--line)}
 .unit:first-child{border-left:0}
-.num{display:block;font:700 clamp(30px,8.6vw,56px)/1 Unbounded,"Arial Black",sans-serif;color:#f1cf6e;white-space:nowrap}
+.num{display:block;font:700 clamp(30px,8.6vw,56px)/1 Unbounded,"Arial Black",sans-serif;font-size:clamp(24px,13cqi,56px);color:#f1cf6e;white-space:nowrap}
 .num i{display:inline-block;width:.8em;font-style:normal;text-align:center}
 .lab{display:block;margin-top:8px;font-size:13px;font-weight:600;color:var(--mute)}
 .outnow{margin:0;padding-block:.06em;font:800 clamp(48px,9vw,88px)/1.02 Unbounded,"Arial Black",sans-serif;letter-spacing:-.025em}
